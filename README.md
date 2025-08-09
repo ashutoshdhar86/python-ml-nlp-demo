@@ -42,7 +42,7 @@ python -m spacy download en_core_web_sm
 Run the main script:
 
 ```bash
-python Untitled-1.py
+python ml_nlp_demo.py
 ```
 
 ## License
