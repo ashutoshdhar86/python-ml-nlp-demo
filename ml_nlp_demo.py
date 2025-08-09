@@ -65,10 +65,20 @@ for epoch in range(3):
     optimizer.step()
 print("PyTorch training loss:", loss.item())
 
-# NLTK: tokenize a sentence
-nltk.download('punkt', quiet=True)
+
+
+# NLTK: tokenize a sentence (ensure 'punkt' and 'punkt_tab' are downloaded)
 sentence = "Natural Language Processing with NLTK and spaCy is fun!"
-tokens = nltk.word_tokenize(sentence)
+for resource in ['punkt', 'punkt_tab']:
+    try:
+        nltk.data.find(f'tokenizers/{resource}')
+    except LookupError:
+        nltk.download(resource)
+try:
+    tokens = nltk.word_tokenize(sentence)
+except LookupError as e:
+    print("NLTK resource error:", e)
+    tokens = []
 print("NLTK tokens:", tokens)
 
 # spaCy: named entity recognition
